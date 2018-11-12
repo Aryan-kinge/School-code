@@ -1,4 +1,4 @@
-from typing import Any, Union
+
 
 board = [" " for x in range(10)]
 import random
@@ -8,13 +8,14 @@ playerchar = random.randint(0, 1)
 def WhatIsPlayer():
     global playerchar
     if playerchar == 0:
-        compchar = 1
+        playerchar = "O"
+        compchar = "X"
         return compchar
 
     elif playerchar == 1:
-        compchar = 0
+        playerchar = "X"
+        compchar = "O"
         return compchar
-
 
 def insertLetter(letter, pos):
     board[pos] = letter
@@ -50,10 +51,18 @@ def isWinner(bo, le):
 
 
 def playerMove():
-    pick = int(input("Please pick a cell between 1 and 9 where you want to place your character"))
-    pass
-
-
+    run = True
+    while run:
+        pick = int(input("Please pick a cell between 1 and 9 where you want to place your character"))
+        try:
+            pick = int(pick)
+            if pick > 0 and pick < 10:
+                insertLetter(playerchar, pick)
+                run = False
+            else:
+                print("Please enter a number between 1 and 9!")
+        except:
+            print("Please enter a number!")
 
 def compMove():
     pass
@@ -65,11 +74,11 @@ def isBoardFull(board):
     pass
 
 def main():
-    global playerchar
+    playerchar1 = playerchar
     print("Welcome to Toc Tac Toe!")
     printBoard(board)
     print("Now you will be assigned a letter!")
-    print("Your character is ", playerchar)
+    print("Your character is", playerchar1)
     WhatIsPlayer()
     if not isWinner(board, playerchar):
         playerMove()
