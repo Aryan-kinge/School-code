@@ -2,17 +2,15 @@
 
 board = [" " for x in range(10)]
 import random
-playerchar = random.randint(0, 1)
-
+global compchar
 
 def WhatIsPlayer():
-    global playerchar
-    if playerchar == 0:
+    rnd = random.randint(0, 1)
+    if rnd == 0:
         playerchar = "O"
         compchar = "X"
-        return compchar
-
-    elif playerchar == 1:
+        return playerchar
+    else:
         playerchar = "X"
         compchar = "O"
         return compchar
@@ -33,7 +31,7 @@ def printBoard(board):
     print("   ¦   ¦")
     print(" " + board[4] + " ¦ " + board[5] + " ¦ " + board[6])
     print("   ¦   ¦")
-    print("-----------")
+    print("-----------"
     print("   ¦   ¦")
     print(" " + board[7] + " ¦ " + board[8] + " ¦ " + board[9])
     print("   ¦   ¦")
@@ -73,14 +71,15 @@ def selectRandom(board):
 def isBoardFull(board):
     pass
 
+
 def main():
-    playerchar1 = playerchar
+
     print("Welcome to Toc Tac Toe!")
     printBoard(board)
+
     print("Now you will be assigned a letter!")
     print("Your character is", playerchar1)
-    WhatIsPlayer()
-    if not isWinner(board, playerchar):
+    if not isWinner(board, compchar1):
         playerMove()
         print(printBoard(board))
     else:
@@ -90,13 +89,13 @@ def main():
             if again == "Yes" or "yes":
                 again = False
             elif again == "No" or "no":
-                 print("Ok sure, but come and play again soon!")
-                 again = False
-                 break
+                print("Ok sure, but come and play again soon!")
+                again = False
+                break
             else:
                 again = str(input("Please write Yes or No!"))
 
 
+while True:
 
-main()
-
+    main()
