@@ -1,10 +1,9 @@
-
-
-board = [" " for x in range(10)]
 import random
-global compchar
+board = [" " for x in range(10)]
+
 
 def WhatIsPlayer():
+    global compchar
     rnd = random.randint(0, 1)
     if rnd == 0:
         playerchar = "O"
@@ -14,6 +13,11 @@ def WhatIsPlayer():
         playerchar = "X"
         compchar = "O"
         return compchar
+
+
+global playerchar1
+playerchar1 = WhatIsPlayer()
+
 
 def insertLetter(letter, pos):
     board[pos] = letter
@@ -31,7 +35,7 @@ def printBoard(board):
     print("   ¦   ¦")
     print(" " + board[4] + " ¦ " + board[5] + " ¦ " + board[6])
     print("   ¦   ¦")
-    print("-----------"
+    print("-----------")
     print("   ¦   ¦")
     print(" " + board[7] + " ¦ " + board[8] + " ¦ " + board[9])
     print("   ¦   ¦")
@@ -55,18 +59,21 @@ def playerMove():
         try:
             pick = int(pick)
             if pick > 0 and pick < 10:
-                insertLetter(playerchar, pick)
+                insertLetter(playerchar1, pick)
                 run = False
             else:
                 print("Please enter a number between 1 and 9!")
         except:
             print("Please enter a number!")
 
+
 def compMove():
     pass
 
+
 def selectRandom(board):
     pass
+
 
 def isBoardFull(board):
     pass
@@ -79,13 +86,13 @@ def main():
 
     print("Now you will be assigned a letter!")
     print("Your character is", playerchar1)
-    if not isWinner(board, compchar1):
+    if not isWinner(board, playerchar1):
         playerMove()
         print(printBoard(board))
     else:
         print("Sorry, The computer has won this time!")
         again = str(input("Do you want to play again? Yes or No?"))
-        while again == True:
+        while again:
             if again == "Yes" or "yes":
                 again = False
             elif again == "No" or "no":
@@ -97,5 +104,4 @@ def main():
 
 
 while True:
-
     main()
