@@ -1,0 +1,28 @@
+Import tkinter
+Import random
+game = tk()
+ARRAY["" for x in range 5] of INT
+Print Welcome
+define systemCreate():
+	5 BUTTON name hold, GREEN
+	5 TEXTFRAME empty
+	BUTTON name Roll dice (3)
+	13 BUTTON name: Standard block name
+	13 TEXTFRAME name: empty
+	1 TEXT: Upper level
+	1 TEXTFRAME: empty
+	1 TEXT: Bonus
+	1 TEXTFRAME: empty
+	1 TEXT: Lower level
+	1 TEXTFRAME: empty
+define roll():
+	counter equal 1
+	WHILE counter != 3
+		FOR x in ARRAY:
+		ARRAY[x] equal randomrange(1,6, inclusive)
+		FOR d in ARRAY:
+			if BUTTON hold is not RED:
+				ARRAY.append(random(1,6 inclusive) for " " in ARRAY)
+				
+
+	
