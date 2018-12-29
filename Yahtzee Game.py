@@ -16,9 +16,10 @@ window.geometry("400x600")
 # Ensure that the user cannot resize the window
 window.resizable(width=False, height=False)
 
-game_labels = [0, 1, 2, 3, 4, 5, 6 ]
+game_labels = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"]
 game_buttons = []
 game_scores = []
+
 
 # Define functions
 def confirm_players():
@@ -32,8 +33,11 @@ def confirm_players():
         window.geometry("400x600")
         return num_players
 
+
 def display_game_widgets():
     for i in range(0, len(game_labels)):
+
+        # Appends the list so that we can display all the widgets at the same time through the iteration of a list
         game_buttons.append(tk.Button(upper_score_frame, text=game_labels[i], command=game_move))
         game_scores.append(tk.Text(upper_score_frame, width=2, height=1))
 
@@ -68,13 +72,13 @@ button_numplay.grid(column=3, row=2)
 
 # Reserve space for dice
 dice_frame = tk.Label()
-dice_frame.grid(columnspan=0, rowspan=3) # Reserve space for the dice area
+dice_frame.grid(columnspan=8, rowspan=3)  # Reserve space for the dice area
 
 # Reserve space for the scores
 upper_score_frame = tk.Label()
-upper_score_frame.grid(columnspan=3, rowspan=3) # Reserve space for the upper scores
+upper_score_frame.grid(columnspan=3, rowspan=3)  # Reserve space for the upper scores
 lower_score_frame = tk.Label()
-lower_score_frame.grid(columnspan=3, rowspan=3) # reserve space for the lower scores
+lower_score_frame.grid(columnspan=3, rowspan=3)  # reserve space for the lower scores
 
 # Display the main window infinitely
 window.mainloop()
