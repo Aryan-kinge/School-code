@@ -21,7 +21,7 @@ game_buttons = []
 game_scores = []
 random_list = [1, 2, 3, 4, 5]
 print(game_scores)
-score = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+score = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 
 # Define functions
@@ -38,22 +38,20 @@ def confirm_players():
         return num_players
 
 
-
 def game_move(x):
     global random_list, score
-    print(x)
     if x == 1 or x == 2 or x == 3 or x == 4 or x == 5 or x == 6:
         score[x-1] += random_list.count(x)*x
     if x == 7:  # Chance Button
         for i in random_list:
-            score[6] += i # it finds the sum of all the values in the randomly generated dice numbers
-    if x == 8:
+            score[6] += i  # it finds the sum of all the values in the randomly generated dice numbers
+    if x == 8:  # Yahtzee Button
         if random_list[0] == random_list[1] == random_list[2] == random_list[3] == random_list[4]:
             score[7] += 50
     if x == 9:
-         if random_list.count(1) >= 3 or random_list.count(2) >= 3 or random_list.count(3) >= 3 or random_list.count(4) >= 3 or random_list.count(5) >= 3 or random_list.count(6) >= 3:
-             for i in random_list:
-                 score[8] += i
+        if random_list.count(1) >= 3 or random_list.count(2) >= 3 or random_list.count(3) >= 3 or random_list.count(4) >= 3 or random_list.count(5) >= 3 or random_list.count(6) >= 3:
+            for i in random_list:
+                score[8] += i
 
     if x == 10:
         if random_list.count(1) >= 4 or random_list.count(2) >= 4 or random_list.count(3) >= 4 or random_list.count(4) >= 4 or random_list.count(5) >= 4 or random_list.count(6) >= 4:
@@ -71,35 +69,32 @@ def game_move(x):
         if (1 in random_list and 2 in random_list and 3 in random_list and 4 in random_list and 5 in random_list) or (2 in random_list and 3 in random_list and 4 in random_list and 5 in random_list and 6 in random_list):
             score[12] += 40
     print(score)
-    display_game_widgets()
 
 
 def display_game_widgets():
-    for i in range(0, len(game_labels)):
-        print(i+1)
-        print(i+1)
-        # Appends the list so that we can display all the widgets at the same time through the iteration of a list
-        game_buttons.append(tk.Button(upper_score_frame, text=game_labels[i], command=lambda: game_move(i+1)))
-        game_scores.append(tk.Label(upper_score_frame, text=score[i], width=2, height=1))
+        for i in range(0, len(game_labels)):
+            # Appends the list so that we can display all the widgets at the same time through the iteration of a list
+            game_buttons.append(tk.Button(upper_score_frame, text=game_labels[i], command=game_move(i)))
+            game_scores.append(tk.Label(upper_score_frame, text=score[i], width=2, height=1))
 
-        game_buttons[-1].grid(row=(i+2) if i < 6 else i+5, column=1, sticky="e")
-        game_scores[-1].grid(row=(i+2) if i < 6 else i+5, column=3, sticky="w")
+            game_buttons[-1].grid(row=(i+2) if i < 6 else i+5, column=1, sticky="e")
+            game_scores[-1].grid(row=(i+2) if i < 6 else i+5, column=3, sticky="w")
 
-        # Make the text appear read only
-        game_scores[-1].configure(state="disabled")
+            # Make the text appear read only
+            game_scores[-1].configure(state="disabled")
 
-    # Current score and bonus award
-    upper_score = tk.Text(upper_score_frame, width=2, height=1)
-    upper_score.grid(row=8, column=3)
-    bonus_score = tk.Text(upper_score_frame, width=2, height=1)
-    bonus_score.grid(row=9, column=3)
-    bonus_title = tk.Label(upper_score_frame, text="Upper Score: ")
-    bonus_title.grid(column=1, row=8)
-    upper_title = tk.Label(upper_score_frame, text="Bonus Score: ")
-    upper_title.grid(column=1, row=9)
-    blank_line = tk.Label(upper_score_frame, text="")
-    blank_line.grid(column=1, row=10)
-    window.update()
+        # Current score and bonus award
+        upper_score = tk.Text(upper_score_frame, width=2, height=1)
+        upper_score.grid(row=8, column=3)
+        bonus_score = tk.Text(upper_score_frame, width=2, height=1)
+        bonus_score.grid(row=9, column=3)
+        bonus_title = tk.Label(upper_score_frame, text="Upper Score: ")
+        bonus_title.grid(column=1, row=8)
+        upper_title = tk.Label(upper_score_frame, text="Bonus Score: ")
+        upper_title.grid(column=1, row=9)
+        blank_line = tk.Label(upper_score_frame, text="")
+        blank_line.grid(column=1, row=10)
+        window.update()
 
 
 # Obtain the number of players
