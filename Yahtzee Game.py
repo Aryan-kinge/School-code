@@ -3,7 +3,8 @@
 
 # Import Libraries
 import tkinter as tk
-
+import random
+import math
 # Create the main window
 window = tk.Tk()
 
@@ -20,7 +21,6 @@ game_labels = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes", "Chance", "Y
 game_buttons = []
 game_scores = []
 random_list = [1, 2, 3, 4, 5]
-print(game_scores)
 score = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 
@@ -39,9 +39,11 @@ def confirm_players():
 
 
 def game_move(x):
-    global random_list, score
-    if x == 1 or x == 2 or x == 3 or x == 4 or x == 5 or x == 6:
+    global random_list, score, upper_score_frame, lower_score_frame, dice_frame
+    print(random_list,game_buttons)
+    if x == game_buttons[0] or x == game_buttons[1] or x == game_buttons[2] or x == game_buttons[3] or x == game_buttons[4] or x == game_buttons[5]:
         score[x-1] += random_list.count(x)*x
+        print("VARIABLE")
     if x == 7:  # Chance Button
         for i in random_list:
             score[6] += i  # it finds the sum of all the values in the randomly generated dice numbers
@@ -52,7 +54,6 @@ def game_move(x):
         if random_list.count(1) >= 3 or random_list.count(2) >= 3 or random_list.count(3) >= 3 or random_list.count(4) >= 3 or random_list.count(5) >= 3 or random_list.count(6) >= 3:
             for i in random_list:
                 score[8] += i
-
     if x == 10:
         if random_list.count(1) >= 4 or random_list.count(2) >= 4 or random_list.count(3) >= 4 or random_list.count(4) >= 4 or random_list.count(5) >= 4 or random_list.count(6) >= 4:
             for i in random_list:
@@ -68,13 +69,17 @@ def game_move(x):
     if x == 13:
         if (1 in random_list and 2 in random_list and 3 in random_list and 4 in random_list and 5 in random_list) or (2 in random_list and 3 in random_list and 4 in random_list and 5 in random_list and 6 in random_list):
             score[12] += 40
-    print(score)
+    """upper_score_frame.update()
+    lower_score_frame.update()
+    dice_frame.update()"""
 
 
 def display_game_widgets():
         for i in range(0, len(game_labels)):
+            var = lambda a:game_move(a)
+            print(str(i))
             # Appends the list so that we can display all the widgets at the same time through the iteration of a list
-            game_buttons.append(tk.Button(upper_score_frame, text=game_labels[i], command=game_move(i)))
+            game_buttons.append(tk.Button(upper_score_frame, text=game_labels[i], command=lambda:var(i+1)))
             game_scores.append(tk.Label(upper_score_frame, text=score[i], width=2, height=1))
 
             game_buttons[-1].grid(row=(i+2) if i < 6 else i+5, column=1, sticky="e")
