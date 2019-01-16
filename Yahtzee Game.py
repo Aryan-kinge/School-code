@@ -22,25 +22,28 @@ game_buttons = []
 game_scores = []
 random_list = [1, 2, 3, 4, 5]
 score = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+hold_labels = ["Hold 1", "Hold 2", "Hold 3", "Hold 4", "Hold 5", ]
+dice_buttons = []
+dice_numbers = []
 
 
 # Define functions
 def confirm_players():
     num_players = entry_numplay.get()
-    print(num_players)
     if num_players == "1" or num_players == "2":
         print("Number of players is confirmed as " + num_players)
         label_numplay.destroy()
         entry_numplay.destroy()
         button_numplay.destroy()
         window.geometry("400x600")
+        display_dice()
         display_game_widgets()
         return num_players
 
 
+
 def game_move(x):
     global random_list, score, upper_score_frame, lower_score_frame, dice_frame
-    print(random_list,game_buttons)
     if x == game_buttons[0] or x == game_buttons[1] or x == game_buttons[2] or x == game_buttons[3] or x == game_buttons[4] or x == game_buttons[5]:
         score[x-1] += random_list.count(x)*x
         print("VARIABLE")
@@ -77,9 +80,8 @@ def game_move(x):
 def display_game_widgets():
         for i in range(0, len(game_labels)):
             var = lambda a:game_move(a)
-            print(str(i))
             # Appends the list so that we can display all the widgets at the same time through the iteration of a list
-            game_buttons.append(tk.Button(upper_score_frame, text=game_labels[i], command=lambda:var(i+1)))
+            game_buttons.append(tk.Button(upper_score_frame, text=game_labels[i], command=lambda b=game_labels[-1]: game_move(b)))
             game_scores.append(tk.Label(upper_score_frame, text=score[i], width=2, height=1))
 
             game_buttons[-1].grid(row=(i+2) if i < 6 else i+5, column=1, sticky="e")
@@ -102,6 +104,23 @@ def display_game_widgets():
         window.update()
 
 
+def roll():
+    pass
+
+def display_dice():
+    global a
+    for a in range(0, len(hold_labels)):
+        dice_buttons.append(tk.Button(dice_frame, text=hold_labels[a], command=game_move))
+        dice_numbers.append(tk.Text(dice_frame, width=4, height=1))
+
+        dice_buttons[-1].grid(row=1, column=a+4, sticky='e')
+        dice_numbers[-1].grid(row=2, column=a+4, sticky='w')
+
+    roll_button = tk.Button(dice_frame, text="Roll", command=roll())
+    roll_button.grid(row=1, column=10, sticky='n')
+    rolls_left = tk.Text(upper_score_frame, width=2, height=1)
+    rolls_left.grid(row=2, column=2)
+
 # Obtain the number of players
 label_numplay = tk.Label(text="Enter number of players (1-2): ")
 label_numplay.grid(column=0, row=2)
@@ -114,7 +133,7 @@ button_numplay.grid(column=3, row=2)
 
 # Reserve space for dice
 dice_frame = tk.Label()
-dice_frame.grid(columnspan=8, rowspan=3)  # Reserve space for the dice area
+dice_frame.grid(columnspan=20, rowspan=3)  # Reserve space for the dice area
 
 # Reserve space for the scores
 upper_score_frame = tk.Label()
@@ -122,7 +141,7 @@ upper_score_frame.grid(columnspan=3, rowspan=3)  # Reserve space for the upper s
 lower_score_frame = tk.Label()
 lower_score_frame.grid(columnspan=3, rowspan=3)  # reserve space for the lower scores
 
-print(game_scores)
+
 
 # Display the main window infinitely
 window.mainloop()
