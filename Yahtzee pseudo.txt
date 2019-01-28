@@ -1,0 +1,85 @@
+Import tkinter
+Import random
+game = tk.Tk()
+
+window.title("Yahtzee game")
+
+window.geometery("400x600")
+
+game_labels = ARRAY of Labls for potential boxes
+
+gamebuttons = empty ARRAY
+
+gamescores = empty ARRAY
+
+random_list = empty ARRAY
+
+score = ARRAY with 13 indices all "0"
+
+label_numplay = LABEL "enter number of players"
+display label on window
+entry_numplay = ENTRYBOX
+
+display entrybox on grid
+button_numplay = BUTTON "enter number of players" command=confirm_number_of_players()
+
+display button on grid
+create 3 frames for the specific components
+
+define function called confirm_number_of_players():
+	num_players = entry_numplay result
+	if this result == 1 or 2:
+	print number of players is equal to "num_players"
+	destroy all of the widgets until a blank screen occurs
+	call function : display_game_widgets
+
+define function called game_move(x):
+	if x == 1 or x == 2 or x == 3 or x == 4 or x == 5 or x == 6:
+        score[x-1] += random_list.count(x)*x
+    if x == 7:  # Chance Button
+        for i in random_list:
+            score[6] += i  # it finds the sum of all the values in the randomly generated dice numbers
+    if x == 8:  # Yahtzee Button
+        if random_list[0] == random_list[1] == random_list[2] == random_list[3] == random_list[4]:
+            score[7] += 50
+    if x == 9:
+        if random_list.count(1) >= 3 or random_list.count(2) >= 3 or random_list.count(3) >= 3 or random_list.count(4) >= 3 or random_list.count(5) >= 3 or random_list.count(6) >= 3:
+            for i in random_list:
+                score[8] += i
+
+    if x == 10:
+        if random_list.count(1) >= 4 or random_list.count(2) >= 4 or random_list.count(3) >= 4 or random_list.count(4) >= 4 or random_list.count(5) >= 4 or random_list.count(6) >= 4:
+            for i in random_list:
+                score[9] += i
+    if x == 11:
+        for i in range(6):
+            if random_list.count(i) == 3 and (random_list.count((i+1)% 6) == 2 or random_list.count((i+2)% 6) == 2 or random_list.count((i+3)% 6) == 2 or random_list.count((i+4)% 6) == 2 or random_list.count((i+5)% 6) == 2):
+                score[10] += 25
+
+    if x == 12:
+        if (1 in random_list and 2 in random_list and 3 in random_list and 4 in random_list) or (2 in random_list and 3 in random_list and 4 in random_list and 5 in random_list) or (3 in random_list and 4 in random_list and 5 in random_list and 6 in random_list):
+            score[11] += 30
+    if x == 13:
+        if (1 in random_list and 2 in random_list and 3 in random_list and 4 in random_list and 5 in random_list) or (2 in random_list and 3 in random_list and 4 in random_list and 5 in random_list and 6 in random_list):
+            score[12] += 40
+			
+define function called display_game_widgets():
+	for the range of ARRAY game_labels:
+		create LABELs and BUTTONs : text = game_labels[i]/score[1] and command = game_move(i)
+		display onto window 
+		make text appear read only
+		create upper score LABEL and bonus LABEL
+		diplay both onto window
+		create blank line LABEL
+		diplay onto window
+		
+window.mainloop()
+	
+	
+	
+	
+	
+	
+	
+	
+	
