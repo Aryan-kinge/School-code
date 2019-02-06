@@ -1,0 +1,14 @@
+Create 2 ARRAY
+ARRAY1 = empty
+ARRAY2 = empty
+
+set FOR loop FOR i in range (0,100)
+	append ARRAY1 with i squared
+	append ARRAY2 with i
+
+
+
+VAR1 = sum(ARRAY1)
+VAR2 = sum(ARRAY2) to the power of two
+
+print VAR2 - VAR1
