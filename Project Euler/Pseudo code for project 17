@@ -1,0 +1,14 @@
+ARRAY = [len of numbers up to 19]
+number = <Enter the number>
+
+thousands = math.floor(number / 1000)
+ print how many thousands are in the number
+
+hundreds = math.floor(number / 100) % 10
+ print how many hundreds are in the number
+
+tens = math.floor(number % 100)
+ print how many tens are in the number
+
+
+ 
