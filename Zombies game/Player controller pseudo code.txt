@@ -1,0 +1,83 @@
+# Player controller pseudo code for the algorithm
+# Aryan Kinge
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+{
+    public animator
+    public rigid body of player
+    public maximum aim
+    public minimum aim
+    public player camera
+
+
+
+    Vector3 movement;
+    Vector3 aim;
+    Vector2 cross;
+    
+
+
+
+    start the main game loop
+    {
+        cursor should not be visible and also not moving
+        
+    }
+    
+    update the screen once per frame to ensure smooth gameplay
+    {
+        
+        Inputs();
+        Animations();
+        Move();
+        Shooting();
+        
+
+    }
+
+    function obtaining the inputs of the player with regards to movement
+    {
+        factor in the WASD movement by getting the X and Y axis
+        facotr in the mouse movement by getting the mouse axis X and the mouse axis Y
+        aim = aim + mouse movement
+        keep the aim located within the screen using the variables maxaim and minaim
+
+        
+
+
+    }
+
+    function with all the player animations
+    {
+		if the player moves on the x axis, this plays the animation for the player movement
+        if the player moves on the y axis, this plays the animation for the player movement 
+        this creates a variable to store the magnitude of movement
+        plays animation for crosshair movement on the x axis
+        plays animation for crosshair movement on the y axis
+        records the magnitude of the crosshair movement
+        plays the animation if the player presses the fire button on the mouse
+
+    }
+
+    function which makes the player actualy move
+    {
+        make the rigid body of the player move by using the transform position function
+    }
+
+    =function which enables shooting
+    {
+        put the crosshair where the mouse is in terms of aim and therefore the player shoots
+        
+
+        if player presses the left  mouse button:
+        {
+            crosshair moves to the mouse position and plays the selected animation
+
+        }
+
+
+    }
+}
