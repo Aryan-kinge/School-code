@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         aim.x = Mathf.Clamp(aim.x, minaim.x, maxaim.x);
         aim.y = Mathf.Clamp(aim.y, minaim.x, maxaim.y);
 
-        
+         
 
 
     }
